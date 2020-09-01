@@ -17,13 +17,16 @@
                 console.log(quiz);
                 for (q in quiz.quiz) {
                     document.body.innerHTML += '<h2>' + quiz.quiz[q].question + '</h2>';
+                    localStorage.setItem('+ document.body.innerHTML[q] +', JSON.stringify({name: "quiz.quiz[q].question"}));
                     document.body.innerHTML += '<p>Please select your answer:</p>';
                     for(var i = 0; i<quiz.quiz[q].options.length; i++) {
                         document.body.innerHTML += '<input type="radio" id="bulls" name="team" value="bulls"><label for="bulls">' + quiz.quiz[q].options[i] + ' </label><br>';
+                        localStorage.setItem('+ document.body.innerHTML[i] +', JSON.stringify({name: "quiz.quiz[q].options[i]"}));
                     }
                    
                     document.body.innerHTML += '<p>Answer: ' + quiz.quiz[q].answer + '</p>';
                     document.body.innerHTML += '<button type="submit" value="Submit">Submit</button>'
+                    localStorage.setItem('+ document.body.innerHTML[q] +', JSON.stringify({name: "quiz.quiz[q].answer"}));
                 }           
              
             }).catch(function (err) {

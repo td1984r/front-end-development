@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content=
+"width=device-width, initial-scale=1.0">
+        <title>AJAX</title>
+    </head>
+    <body>
+        <script>
+            fetch('quiz.json').then(function (response) {
+                if (!response.ok) {
+                    throw Error("Error while reading file.");
+                }
+                return response.json();
+            }).then(function (quiz) {
+                console.log(quiz);
+                for (q in quiz.quiz) {
+                    document.body.innerHTML += '<h2>' + quiz.quiz[q].question + '</h2>';
+                    document.body.innerHTML += '<p>Please select your answer:</p>';
+                    for(var i = 0; i<quiz.quiz[q].options.length; i++) {
+                        document.body.innerHTML += '<input type="radio" id="bulls" name="team" value="bulls"><label for="bulls">' + quiz.quiz[q].options[i] + ' </label><br>';
+                    }
+                   
+                    document.body.innerHTML += '<p>Answer: ' + quiz.quiz[q].answer + '</p>';
+                    document.body.innerHTML += '<button type="submit" value="Submit">Submit</button>'
+                }           
+             
+            }).catch(function (err) {
+                console.log('Fetch problem: ' + err.message);
+            });
+        </script>
+    </body>
+</html>

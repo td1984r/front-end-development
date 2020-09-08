@@ -25,15 +25,14 @@
                     document.body.innerHTML += '<p>Answer: ' + quiz.quiz[q].answer + '</p>';
                     document.body.innerHTML += '<button type="submit" value="Submit" onclick="save_data()">Submit</button>'
                 }    
-                function save_data() {
+            }).catch(function (err) {
+                console.log('Fetch problem: ' + err.message);
+            });
+            function save_data() {
                         var input = document.getElementById("bulls");
                         localStorage.setItem("bulls", input.value); 
                         var storedValue = localStorage.getItem("bulls")
                         }
-             
-            }).catch(function (err) {
-                console.log('Fetch problem: ' + err.message);
-            });
         </script>
     </body>
 </html>
